@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('adverts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->float('price', 2);
+            $table->boolean('premium');
             $table->timestamps();
         });
     }
