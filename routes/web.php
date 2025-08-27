@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\AdvertController;
+
+Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.overview');
+
+Route::redirect('/', 'adverts');

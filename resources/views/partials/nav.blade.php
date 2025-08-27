@@ -1,0 +1,1 @@
+<x-button type="button" a_link="{{ route('adverts.overview') }}">Advertentieoverzicht</x-button>
