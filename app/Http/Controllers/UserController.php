@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered; //handles the import
+
+use App\Models\User;
+
 class UserController extends Controller
 {
     /**
@@ -11,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -19,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.register');
     }
 
     /**
@@ -27,7 +32,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            
+        ]);
+
+        event(new Registered($user)); // Trigger email verification
+        
+        return view('user.overview');
+           // return response()->json(['message' => 'User registered successfully. Please check your email for verification.'], 201);
     }
 
     /**
