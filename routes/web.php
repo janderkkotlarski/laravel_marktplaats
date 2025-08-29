@@ -10,9 +10,11 @@ Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.overvi
 
 Route::get('/user/register', [UserController::class, 'create'])->name('user.register');
 
+Route::get('/email/verify', function() {
+    return view('auth.verify-email');
+})->middelware('auth')->name('verification.notice');
 
-
-Route::get('/email/verify', [AuthenticationController::class, 'verify_email'])->middleware('auth')->name('verification.notice');
+// Route::get('/email/verify', [AuthenticationController::class, 'verify_email'])->middleware('auth')->name('verification.notice');
 
 Route::post('/user/register', [UserController::class, 'store'])->name('user.store');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
@@ -32,18 +33,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+       
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
+            'premium' => 'required|integer|min:0|max:1',
         ]);
+        
+        // var_dump($request);
 
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->premium = $request->premium;
+
+        $user->save();
+
+        /*
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            
+            'premium' => $request->premium,
         ]);
+        */
+
+        // dd($request);
 
         event(new Registered($user)); // Trigger email verification
         

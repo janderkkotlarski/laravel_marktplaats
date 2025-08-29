@@ -31,8 +31,12 @@
             <br>
             <textarea id="password" name="password" required></textarea>
             <br><br>
+
+            <input type="hidden" id="premium" name="premium" value=0>
             
             <x-button type="submit">Registreren</x-button>
+
+            <x-errors/>
         </form>
     </x-middle_row>
 
