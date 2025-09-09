@@ -45,6 +45,7 @@ class UserController extends Controller
         
         // var_dump($request);
 
+        
         $user = new User();
 
         $user->name = $request->name;
@@ -53,22 +54,26 @@ class UserController extends Controller
         $user->premium = $request->premium;
 
         $user->save();
+        
 
         /*
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'premium' => $request->premium,
+            'premium' => 0,
         ]);
         */
+
+        // $user = User::create($request);
+        
 
         // dd($request);
 
         event(new Registered($user)); // Trigger email verification
         
         return view('user.overview');
-           // return response()->json(['message' => 'User registered successfully. Please check your email for verification.'], 201);
+        // return response()->json(['message' => 'User registered successfully. Please check your email for verification.'], 201);
     }
 
     /**

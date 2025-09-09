@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdvertController;
@@ -12,7 +13,13 @@ Route::get('/user/register', [UserController::class, 'create'])->name('user.regi
 
 Route::get('/email/verify', function() {
     return view('auth.verify-email');
-})->middelware('auth')->name('verification.notice');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 // Route::get('/email/verify', [AuthenticationController::class, 'verify_email'])->middleware('auth')->name('verification.notice');
 
