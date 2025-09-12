@@ -52,4 +52,10 @@ class ConfirmationMail extends Mailable
     {
         return [];
     }
+
+    public function build()
+    {
+        return $this->to('bonjour@mailtrap.io')
+                    ->cc('hola@mailtrap.io');
+    }
 }
