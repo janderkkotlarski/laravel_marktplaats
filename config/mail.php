@@ -110,8 +110,8 @@ return [
     */
 
     'from' => [
-        'address' => 'smtp@mailtrap.io',
-        'name' => 'App Name',
+        'address' => 'admin@mailtrap.io',
+        'name' => 'Administratie',
     ],
 
 ];
