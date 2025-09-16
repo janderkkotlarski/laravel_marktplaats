@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered; //handles the import
@@ -31,10 +33,11 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
+        $user = User::create($request->validated());
 
-       
+        /*
         
         $request->validate([
             'name' => 'required|string|max:255',
@@ -50,6 +53,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+
         $user->password = Hash::make($request->password);
         $user->premium = $request->premium;
 
