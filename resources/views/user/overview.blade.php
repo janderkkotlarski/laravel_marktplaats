@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	Jouw pagina
+	Jouw advertenties, {{ Auth::user()->name }}
 @endsection
 
 @section('content')

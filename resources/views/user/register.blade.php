@@ -19,17 +19,17 @@
             
             <label for="name">Naam:</label>
             <br>
-            <textarea id="name" name="name" required></textarea>
+            <input id="name" name="name" required></textarea>
             <br><br>
 
             <label for="email">Email:</label>
             <br>
-            <textarea id="email" name="email" required></textarea>
+            <input id="email" name="email" required></textarea>
             <br><br>
 
             <label for="password">Wachtwoord:</label>
             <br>
-            <textarea id="password" name="password" required></textarea>
+            <input type="password" id="password" name="password" required>
             <br><br>
 
             <input type="hidden" id="premium" name="premium" value=0>

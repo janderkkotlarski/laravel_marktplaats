@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        
+        return view('user.overview');
     }
 
     /**
@@ -37,46 +37,9 @@ class UserController extends Controller
     {
         $user = User::create($request->validated());
 
-        /*
-        
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'premium' => 'required|integer|min:0|max:1',
-        ]);
-        
-        // var_dump($request);
-
-        
-        $user = new User();
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-
-        $user->password = Hash::make($request->password);
-        $user->premium = $request->premium;
-
-        $user->save();
-        
-
-        /*
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'premium' => 0,
-        ]);
-        */
-
-        // $user = User::create($request);
-        
-
-        // dd($request);
-
         event(new Registered($user)); // Trigger email verification
         
-        return view('user.overview');
+        return view('user.verify')->with(compact('user'));
         // return response()->json(['message' => 'User registered successfully. Please check your email for verification.'], 201);
     }
 

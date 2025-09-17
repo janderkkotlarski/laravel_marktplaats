@@ -11,18 +11,29 @@ Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.overvi
 
 Route::get('/user/register', [UserController::class, 'create'])->name('user.register');
 
+Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
+
+Route::get('/user/overview', [UserController::class, 'index'])->name('user.overview');
+
 Route::get('/email/verify', function() {
+    dd('hello');
+
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
-    return redirect('/home');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+    // dd($request);
 
-// Route::get('/email/verify', [AuthenticationController::class, 'verify_email'])->middleware('auth')->name('verification.notice');
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/user/register', [UserController::class, 'store'])->name('user.store');
 
+Route::post('/logout', [AuthenticationController::class, 'logout']);
+Route::post('/user/login', [AuthenticationController::class, 'authenticate'])->name('authenticate');
+
 Route::redirect('/', 'adverts');
+
+// Route::redirect('user/login', '/login');

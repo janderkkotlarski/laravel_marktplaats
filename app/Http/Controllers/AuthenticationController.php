@@ -30,8 +30,6 @@ class AuthenticationController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended(route('user.overview'));
-
-            dd($request);
         }
         
         return back()->withErrors([
