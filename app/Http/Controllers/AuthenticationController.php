@@ -20,7 +20,7 @@ class AuthenticationController extends Controller
 
     public function authenticate(Request $request): RedirectResponse {
         $credentials = $request->validate([
-            'name' => ['required'],
+            'email' => ['required'],
             'password' => ['required'],
         ]);
 
@@ -33,7 +33,13 @@ class AuthenticationController extends Controller
         }
         
         return back()->withErrors([
-            'name' => 'Opgegeven gebruikersnaam en/of wachtwoord is onjuist.',
-        ])->onlyInput('name');
+            'email' => 'Opgegeven gebruikersnaam en/of wachtwoord is onjuist.',
+        ])->onlyInput('email');
+    }
+
+    public function verify() {
+        $user = Auth::user();
+
+        return view('user.verify')->with(compact('user'));
     }
 }

@@ -13,12 +13,11 @@ Route::get('/user/register', [UserController::class, 'create'])->name('user.regi
 
 Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
 
-Route::get('/user/overview', [UserController::class, 'index'])->name('user.overview');
+Route::get('/user/overview', [UserController::class, 'index'])->name('user.overview')->middleware(['auth', 'verified']);
 
 Route::get('/email/verify', function() {
-    dd('hello');
 
-    return view('auth.verify-email');
+    return view('user.verify');
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {

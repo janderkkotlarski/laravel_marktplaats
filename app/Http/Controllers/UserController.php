@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered; //handles the import
 
 use App\Models\User;
