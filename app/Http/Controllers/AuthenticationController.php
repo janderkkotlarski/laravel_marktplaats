@@ -33,13 +33,7 @@ class AuthenticationController extends Controller
         }
         
         return back()->withErrors([
-            'email' => 'Opgegeven gebruikersnaam en/of wachtwoord is onjuist.',
+            'email' => 'Opgegeven emailadres en/of wachtwoord is onjuist.',
         ])->onlyInput('email');
-    }
-
-    public function verify() {
-        $user = Auth::user();
-
-        return view('user.verify')->with(compact('user'));
-    }
+    }    
 }
