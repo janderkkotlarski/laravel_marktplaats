@@ -12,7 +12,7 @@
 	<form action="{{ route('verification.send') }}" method="POST">
 		@csrf	
 	
-		<input type="hidden" id="user" name="user" value="{{ Auth::user() }}">
+		<input type="hidden" id="user" name="user" value="{{ $user }}">
 
 		<x-button type="submit">Stuur nieuwe email</x-button>
 	</form>
