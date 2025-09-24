@@ -17,5 +17,10 @@
 		<x-button type="submit">Stuur nieuwe email</x-button>
 	</form>
 
-	
+	@if (session('message'))
+		<br>
+		<div class="alert alert-success">
+			{{ session('message') }}
+		</div>	
+	@endif
 @endsection

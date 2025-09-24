@@ -15,7 +15,9 @@ class VerificationController extends Controller
     public function verify(EmailVerificationRequest $request) {
         $request->fulfill();
 
-        return redirect('/');
+        $user = Auth::user();
+
+        return view('user.verified')->with(compact('user'));
     }
 
     public function notify() {
@@ -25,10 +27,8 @@ class VerificationController extends Controller
     }
 
     public function resend(Request $request) {
-        dd($request);
-
         $request->user()->sendEmailVerificationNotification();
     
-        return back()->with('message', 'Verification link sent!');
+        return back()->with('message', 'Verificatie-email herverstuurd!');
     }
 }
