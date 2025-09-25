@@ -26,4 +26,11 @@
 
 		<x-button type="submit">Inloggen</x-button>
 	</form>
+
+	<br><br>
+
+	@guest
+		<x-button type="button" a_link="{{ route('password.request') }}">Wachtwoord vergeten?</x-button>
+	@endguest
+
 @endsection

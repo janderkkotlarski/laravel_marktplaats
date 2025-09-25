@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 
 class AuthenticationController extends Controller
 {
@@ -35,5 +36,17 @@ class AuthenticationController extends Controller
         return back()->withErrors([
             'email' => 'Opgegeven emailadres en/of wachtwoord is onjuist.',
         ])->onlyInput('email');
-    }    
+    }   
+    
+    public function reset(Request $request) {
+        $request->validate(['email' => 'required|email']);
+        
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        return $status === Password::ResetLinkSent
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+    }
 }
