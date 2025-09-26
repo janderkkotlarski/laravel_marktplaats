@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<form action="{{ route('password.email') }}" method="POST">
+	<form action="{{ route('password.update') }}" method="POST">
 		@csrf	
 		<label for="name">Emailadres</label>
 		<br>
@@ -16,13 +16,13 @@
         <label for="name">Nieuw wachtwoord</label>
 		<br>
 		
-		<input type="text" id="password" name="password" required>			
+		<input type="password" id="password" name="password" required>			
 		<br><br>
 
         <label for="name">Nieuw wachtwoord herhaald</label>
 		<br>
 		
-		<input type="text" id="password_confirmation" name="password_confirmation" required>			
+		<input type="password" id="password_confirmation" name="password_confirmation" required>			
 		<br><br>
 
         <input type="hidden" id="token" name="token" value="{{ $token }}">
