@@ -19,6 +19,6 @@
 		@enderror
 		<br>
 
-		<x-button type="submit">Aanvragen</x-button>
+		<x-button type="submit">Verstuur aanvraag</x-button>
 	</form>
 @endsection
