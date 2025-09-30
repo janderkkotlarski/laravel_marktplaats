@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 
 use Illuminate\Auth\Events\Registered; //handles the import
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\User;
+use App\Models\Advert;
 
 class UserController extends Controller
 {
@@ -17,7 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.overview');
+        $adverts = Advert::orderBy('created_at', 'desc')->where('user_id', Auth::id())->get();
+
+        return view('user.overview', compact('adverts'));
     }
 
     /**

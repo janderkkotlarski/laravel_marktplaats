@@ -7,9 +7,22 @@
 @section('content')
 	<tr>
 		<th>Titel</th>
-		<th>Gebruikersnaam</th>
-		<th>Aanmaaktijd</th>
+		<th>Beschrijving</th>
+		<th>Prijs</th>
 	</tr>
+
+	@foreach($adverts as $advert)
+		<tr>
+			<td>{{ $advert->title }}</td>
+			<td>{{ $advert->description }}</td>
+			<td>{{ $advert->price }}</td>
+			<td>
+				<x-button type="button" a_link="{{ route('adverts.edit', $advert) }}">
+					Verander
+				</x-button>
+			</td>
+		</tr>
+	@endforeach
 
 	<x-middle_row>
 		<br><br>
