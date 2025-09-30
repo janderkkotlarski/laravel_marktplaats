@@ -14,7 +14,7 @@ class Advert extends Model
         'title',
         'description',
         'price',
-        'premium,'
+        'premium',
     ];
 
     protected $with = [

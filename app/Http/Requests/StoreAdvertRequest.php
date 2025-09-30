@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreAdvertRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'user_id' => 'required|integer|gte:1',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric:strict|min:0|max:10000|decimal:0,2',
+            'premium' => 'required|integer|min:0|max:1',
+        ];
+    }
+
+     public function messages(): array
+    {
+        return [
+            'user_id.required' => 'Er is geen user_id.',
+            'user_id.integer' => 'user_id is geen geheel getal.',
+            'user_id.gte' => 'user_id moet minstens 1 zijn.',
+            'title.required' => 'Waar is de titel?',
+            'title.max' => 'Titel is langer dan 255 tekens',
+            'description.required' => 'Waar is de beschrijving?',
+            'price.required' => 'Waar is de prijs?',
+            'price.numeric' => 'De prijs is geen getal.',
+            'price.min' => 'De prijs moet minstens 0 zijn.',
+            'price.max' => 'De prijs mag maximaal 10000 zijn.',
+            'price.decimal' => 'De prijs mag niet meer dan 2 cijfers achter de punt hebben.',
+            'premium.required' => 'Een premium aanduiding is noodzakelijk.',
+            'premium.min' => 'Premium mag minimaal 0 zijn.',
+            'premium.max' => 'Premium mag maximaal 1 zijn.',
+        ];
+    }
+}

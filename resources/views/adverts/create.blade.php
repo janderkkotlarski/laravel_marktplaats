@@ -12,15 +12,19 @@
 		<input type="text" id="title" name="title" required>			
 		<br><br>
 
-		<label for="password">Beschrijving</label>
+		<label for="description">Beschrijving</label>
 		<br>
 		<input type="text" id="description" name="description" required>
 		<br><br>
 
-        <label for="password">Prijs</label>
+        <label for="price">Prijs</label>
 		<br>
-		<input type="numver" id="price" name="price" min="0" max="10000" step="0.01" required>
+		<input type="number" id="price" name="price" min="0" max="10000" step="0.01" required>
 		<br>
+
+		<input type="hidden" id="premium" name="premium" value=0>
+
+		<input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
 
 		@error('name')
 			{{ $message }}

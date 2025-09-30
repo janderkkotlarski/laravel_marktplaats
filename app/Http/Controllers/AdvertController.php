@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\StoreAdvertRequest;
+
 use App\Models\Advert;
 
 class AdvertController extends Controller
@@ -34,11 +36,15 @@ class AdvertController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAdvertRequest $request)
     {
-        //
+        // dd($request);
 
-        
+        // dd($request->validated());
+
+        $advert = Advert::create($request->validated());
+
+        return redirect()->route('user.overview');
     }
 
     /**
