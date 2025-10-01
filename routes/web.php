@@ -15,6 +15,7 @@ Route::get('/adverts/create', [AdvertController::class, 'create'])->middleware([
 Route::post('/adverts/create', [AdvertController::class, 'store'])->middleware(['auth', 'verified'])->name('advert.store');
 
 Route::get('adverts/{advert}/edit', [AdvertController::class, 'edit'])->middleware(['auth', 'verified'])->name('adverts.edit');
+Route::patch('adverts/{advert}', [AdvertController::class, 'update'])->middleware(['auth', 'verified'])->name('adverts.update');
 
 Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
 

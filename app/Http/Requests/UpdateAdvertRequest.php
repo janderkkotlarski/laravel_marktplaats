@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAdvertRequest extends FormRequest
+class UpdateAdvertRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,6 @@ class StoreAdvertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|integer|gte:1',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric:strict|min:0|max:10000|decimal:0,2',
@@ -33,9 +32,6 @@ class StoreAdvertRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'user_id.required' => 'Er is geen user_id.',
-            'user_id.integer' => 'user_id is geen geheel getal.',
-            'user_id.gte' => 'user_id moet minstens 1 zijn.',
             'title.required' => 'Waar is de titel?',
             'title.max' => 'Titel is langer dan 255 tekens',
             'description.required' => 'Waar is de beschrijving?',

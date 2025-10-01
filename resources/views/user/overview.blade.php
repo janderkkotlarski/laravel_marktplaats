@@ -18,7 +18,7 @@
 			<td>{{ $advert->price }}</td>
 			<td>
 				<x-button type="button" a_link="{{ route('adverts.edit', $advert) }}">
-					Verander
+					Bewerken
 				</x-button>
 			</td>
 		</tr>

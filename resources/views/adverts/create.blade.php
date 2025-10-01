@@ -7,7 +7,7 @@
 @section('content')
 	<form action="{{ route('advert.store') }}" method="POST">
 		@csrf	
-		<label for="name">Titel</label>
+		<label for="title">Titel</label>
 		<br>		
 		<input type="text" id="title" name="title" required>			
 		<br><br>
@@ -26,7 +26,7 @@
 
 		<input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
 
-		@error('name')
+		@error('title')
 			{{ $message }}
 			<br>
 		@enderror

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\StoreAdvertRequest;
+use App\Http\Requests\UpdateAdvertRequest;
 
 use App\Models\Advert;
 
@@ -38,10 +39,6 @@ class AdvertController extends Controller
      */
     public function store(StoreAdvertRequest $request)
     {
-        // dd($request);
-
-        // dd($request->validated());
-
         $advert = Advert::create($request->validated());
 
         return redirect()->route('user.overview');
@@ -58,17 +55,33 @@ class AdvertController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Advert $advert)
     {
-        //
+        $user = Auth::user();
+
+        return view('adverts.edit')->with(compact(['user', 'advert']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateAdvertRequest $request, Advert $advert)
     {
-        //
+        $updated = new Advert($request->validated());
+
+        $advert->title = $updated->title;
+        $advert->description = $updated->description;
+        $advert->price = $updated->price;
+        $advert->premium = $updated->premium;
+
+        $advert->save();
+
+        return redirect()->route('user.overview');
+    }
+
+    public function delete(Advert $advert)
+    {
+        return view('adverts.delete')->with(compact('advert'));
     }
 
     /**
