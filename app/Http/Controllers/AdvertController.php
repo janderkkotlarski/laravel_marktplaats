@@ -47,9 +47,9 @@ class AdvertController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Advert $advert)
     {
-        //
+        return view('adverts.show')->with(compact('advert'));
     }
 
     /**

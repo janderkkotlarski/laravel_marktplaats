@@ -8,17 +8,22 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BidController;
 
 Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.overview');
 
-Route::get('/adverts/create', [AdvertController::class, 'create'])->middleware(['auth', 'verified'])->name('advert.create');
-Route::post('/adverts/create', [AdvertController::class, 'store'])->middleware(['auth', 'verified'])->name('advert.store');
+Route::get('/adverts/{advert}/show', [AdvertController::class, 'show'])->name('adverts.show');
 
-Route::get('adverts/{advert}/edit', [AdvertController::class, 'edit'])->middleware(['auth', 'verified'])->name('adverts.edit');
-Route::patch('adverts/{advert}', [AdvertController::class, 'update'])->middleware(['auth', 'verified'])->name('adverts.update');
+Route::get('/adverts/create', [AdvertController::class, 'create'])->middleware(['auth', 'verified'])->name('adverts.create');
+Route::post('/adverts/create', [AdvertController::class, 'store'])->middleware(['auth', 'verified'])->name('adverts.store');
 
-Route::get('adverts/{advert}/delete', [AdvertController::class, 'delete'])->middleware(['auth', 'verified'])->name('adverts.delete');
-Route::get('adverts/{advert}/destroy', [AdvertController::class, 'destroy'])->middleware(['auth', 'verified'])->name('adverts.destroy');
+Route::get('/adverts/{advert}/edit', [AdvertController::class, 'edit'])->middleware(['auth', 'verified'])->name('adverts.edit');
+Route::patch('/adverts/{advert}', [AdvertController::class, 'update'])->middleware(['auth', 'verified'])->name('adverts.update');
+
+Route::get('/adverts/{advert}/delete', [AdvertController::class, 'delete'])->middleware(['auth', 'verified'])->name('adverts.delete');
+Route::get('/adverts/{advert}/destroy', [AdvertController::class, 'destroy'])->middleware(['auth', 'verified'])->name('adverts.destroy');
+
+Route::post('/bids/store', [BidController::class, 'store'])->->middleware(['auth', 'verified'])->name('bids.store');
 
 Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
 

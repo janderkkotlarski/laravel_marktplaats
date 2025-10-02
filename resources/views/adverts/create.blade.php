@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<form action="{{ route('advert.store') }}" method="POST">
+	<form action="{{ route('adverts.store') }}" method="POST">
 		@csrf	
 		<label for="title">Titel</label>
 		<br>		

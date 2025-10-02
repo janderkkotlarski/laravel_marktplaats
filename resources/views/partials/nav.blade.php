@@ -2,6 +2,8 @@
 
 @guest
 	<x-button type="button" a_link="{{ route('login') }}">Log In</x-button>
+	
+	<x-button type="button" a_link="{{ route('user.register') }}">Registratie</x-button>
 @endguest
 
 @auth
