@@ -87,8 +87,10 @@ class AdvertController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Advert $advert)
     {
-        //
+        $advert->delete();
+
+        return redirect()->route('user.overview');
     }
 }

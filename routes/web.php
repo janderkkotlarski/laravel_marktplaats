@@ -17,6 +17,9 @@ Route::post('/adverts/create', [AdvertController::class, 'store'])->middleware([
 Route::get('adverts/{advert}/edit', [AdvertController::class, 'edit'])->middleware(['auth', 'verified'])->name('adverts.edit');
 Route::patch('adverts/{advert}', [AdvertController::class, 'update'])->middleware(['auth', 'verified'])->name('adverts.update');
 
+Route::get('adverts/{advert}/delete', [AdvertController::class, 'delete'])->middleware(['auth', 'verified'])->name('adverts.delete');
+Route::get('adverts/{advert}/destroy', [AdvertController::class, 'destroy'])->middleware(['auth', 'verified'])->name('adverts.destroy');
+
 Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
 
 Route::get('/user/overview', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('user.overview');
