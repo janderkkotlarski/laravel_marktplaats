@@ -21,7 +21,7 @@
 			<td>{{ $advert->user->name }}</td>
 			<td>{{ $advert->created_at }}</td>
 			<td>
-				<x-button type="button" a_link="{{ route('adverts.show', $advert) }}">Bekijk</x-button>
+				<x-button type="button" a_link="{{ route('adverts.page', $advert) }}">Bekijk</x-button>
 			</td>
 
 		</tr>

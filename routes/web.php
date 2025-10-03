@@ -10,9 +10,9 @@ use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BidController;
 
-Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.overview');
+Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.list');
 
-Route::get('/adverts/{advert}/show', [AdvertController::class, 'show'])->name('adverts.show');
+Route::get('/adverts/{advert}/show', [AdvertController::class, 'show'])->name('adverts.page');
 
 Route::get('/adverts/create', [AdvertController::class, 'create'])->middleware(['auth', 'verified'])->name('adverts.create');
 Route::post('/adverts/create', [AdvertController::class, 'store'])->middleware(['auth', 'verified'])->name('adverts.store');
@@ -23,7 +23,7 @@ Route::patch('/adverts/{advert}', [AdvertController::class, 'update'])->middlewa
 Route::get('/adverts/{advert}/delete', [AdvertController::class, 'delete'])->middleware(['auth', 'verified'])->name('adverts.delete');
 Route::get('/adverts/{advert}/destroy', [AdvertController::class, 'destroy'])->middleware(['auth', 'verified'])->name('adverts.destroy');
 
-Route::post('/bids/store', [BidController::class, 'store'])->->middleware(['auth', 'verified'])->name('bids.store');
+Route::post('/bids/store', [BidController::class, 'store'])->middleware(['auth', 'verified'])->name('bids.store');
 
 Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
 

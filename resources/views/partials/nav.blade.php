@@ -1,4 +1,4 @@
-<x-button type="button" a_link="{{ route('adverts.overview') }}">Advertentieoverzicht</x-button>
+<x-button type="button" a_link="{{ route('adverts.list') }}">Advertentieoverzicht</x-button>
 
 @guest
 	<x-button type="button" a_link="{{ route('login') }}">Log In</x-button>
