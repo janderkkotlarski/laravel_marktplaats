@@ -17,20 +17,21 @@
     <x-middle_row>{{ $advert->user->name }}<br><br></x-middle_row>
 
     <x-middle_row><b>Geplaatst op</b></x-middle_row>
-    <x-middle_row>{{ $advert->created_at }}<br><br></x-middle_row>
+    <x-middle_row>{{ $advert->created_at }}<br><br><br></x-middle_row>
 
 	@foreach($advert->bids as $bid)
-		<x-middle_row><b>Bod door {{ $bid->user->name }}</b></x-middle_row>
-    	<x-middle_row>{{ $bid->price }}<br><br></x-middle_row>
+		<x-middle_row><b>Bod door {{ $bid->user->name }}:</b> {{ $bid->price }}<br></x-middle_row>
 	@endforeach
+
+	<x-middle_row><br><br></x-middle_row>
 
     @auth
 		<x-middle_row>
 			<form action="{{ route('bids.store') }}" method="POST">
 				@csrf
 
-				<label for="price">Bedrag</label>
-				<br>
+				<label for="price">Bedrag om te bieden</label>
+				<br><br>
 				<input type="number" id="price" name="price" min="0" max="10000" step="0.01" required>
 				<br>				
 
