@@ -19,6 +19,11 @@
     <x-middle_row><b>Geplaatst op</b></x-middle_row>
     <x-middle_row>{{ $advert->created_at }}<br><br></x-middle_row>
 
+	@foreach($advert->bids as $bid)
+		<x-middle_row><b>Bod door {{ $bid->user->name }}</b></x-middle_row>
+    	<x-middle_row>{{ $bid->price }}<br><br></x-middle_row>
+	@endforeach
+
     @auth
 		<x-middle_row>
 			<form action="{{ route('bids.store') }}" method="POST">
@@ -35,10 +40,9 @@
 
 				<input type="hidden" id="advert" name="advert" value="{{ $advert }}">
 
-				@error('title')
-					{{ $message }}
-					<br>
-				@enderror
+				<input type="hidden" id="advert_user_id" name="advert_user_id" value="{{ $advert->user_id }}">
+
+				<x-errors/>
 				<br>
 
 				<x-button type="submit">Bevestig bod</x-button>

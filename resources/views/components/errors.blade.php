@@ -1,10 +1,6 @@
 @if ($errors->any())
-    <tr>
-        <td></td>
-        <td>				
-            @foreach ($errors->all() as $error)
-                <li>Error: {{ $error }}</li>
-            @endforeach
-        </td>
-    </tr>
+    <br>
+    @foreach ($errors->all() as $error)
+        <li>Foutmelding: {{ $error }}</li>
+    @endforeach
 @endif

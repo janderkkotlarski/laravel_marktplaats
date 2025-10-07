@@ -25,11 +25,9 @@
 		<input type="hidden" id="premium" name="premium" value=0>
 
 		<input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+		<input type="hidden" id="user_id" name="user_id" value="-1">
 
-		@error('title')
-			{{ $message }}
-			<br>
-		@enderror
+		<x-errors/>
 		<br>
 
 		<x-button type="submit">Advertentie aanmaken</x-button>
