@@ -9,6 +9,7 @@ use App\Http\Requests\StoreAdvertRequest;
 use App\Http\Requests\UpdateAdvertRequest;
 
 use App\Models\Advert;
+use App\Models\Category;
 
 class AdvertController extends Controller
 {
@@ -31,7 +32,9 @@ class AdvertController extends Controller
     public function create() {
         $user = Auth::user();
 
-        return view('adverts.create')->with(compact('user'));
+        $categories = Category::orderBy('created_at', 'desc')->get();
+
+        return view('adverts.create')->with(compact(['user', 'categories']));
     }
 
     /**
@@ -40,6 +43,8 @@ class AdvertController extends Controller
     public function store(StoreAdvertRequest $request)
     {
         $advert = Advert::create($request->validated());
+        
+        $advert->categories()->sync($request->category_id);
 
         return redirect()->route('user.overview');
     }
@@ -59,7 +64,9 @@ class AdvertController extends Controller
     {
         $user = Auth::user();
 
-        return view('adverts.edit')->with(compact(['user', 'advert']));
+        $categories = Category::orderBy('created_at', 'desc')->get();
+
+        return view('adverts.edit')->with(compact(['user', 'advert', 'categories']));
     }
 
     /**
@@ -75,6 +82,8 @@ class AdvertController extends Controller
         $advert->premium = $updated->premium;
 
         $advert->save();
+
+        $advert->categories()->sync($request->category_id);
 
         return redirect()->route('user.overview');
     }

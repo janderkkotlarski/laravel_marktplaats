@@ -45,6 +45,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Meubels',
         ]);
 
+         Category::factory()->create([
+            'name' => 'Fietsen',
+        ]);
+
         $this->call([
             AdvertSeeder::class,
             BidSeeder::class,
