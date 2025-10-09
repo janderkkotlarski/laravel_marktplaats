@@ -30,6 +30,13 @@ class DatabaseSeeder extends Seeder
             'premium' => '0',
         ]);
 
+        User::factory()->create([
+            'name' => 'Bulktron',
+            'email' => 'bulk@tron.com',
+            'password' => 'Eatmorebloats',
+            'premium' => '1',
+        ]);
+
         Category::factory()->create([
             'name' => 'Electronica',
         ]);

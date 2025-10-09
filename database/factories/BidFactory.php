@@ -18,23 +18,29 @@ class BidFactory extends Factory
      * @return array<string, mixed>
      */
 
-    public function not_same_user($advert_user_id) {
+    public function other_bid_user($advert_user_id) {
+        $bid_user_id = $advert_user_id;
 
+        $amount = User::all()->count();
 
+        while ($bid_user_id == $advert_user_id &&
+               $amount != 1) {
+            $bid_user_id = User::inRandomOrder()->first()->id;
+        }
 
-        return 1;
+        return $bid_user_id;
     }
 
     public function definition(): array
     {
         $advert = Advert::inRandomOrder()->first();
-        $adver_user_id = $advert->user_id();
+        $advert_user_id = $advert->user_id;
 
-        // $user_id = User::inRandomOrder()->first()->id
+        $bid_user_id = BidFactory::other_bid_user($advert_user_id);
 
         return [
             // 'user_id' => User::inRandomOrder()->first()->id,
-            'user_id' => BidFactory::not_same_user($adver_user_id),
+            'user_id' => $bid_user_id,            
             'advert_id' => $advert->id,
             'price' => $this->faker->randomFloat(2, 1, 100),
         ];
