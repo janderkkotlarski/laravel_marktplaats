@@ -42,7 +42,10 @@
 			}
 			label {
 				font-weight: bold;
-			}		  
+			}
+			items-center {
+				color: #d0f0b0;
+			}
 		</style>
 	</head>
 	<body>

@@ -16,14 +16,24 @@ class AdvertController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {
+    public function index(Request $request) {
         $adverts = Advert::query();
 
         $adverts->orderBy('created_at', 'desc');
 
-        $adverts = $adverts->get();
+        $categories = Category::orderBy('id', 'asc')->get();
 
-        return view('adverts.overview')->with(compact('adverts'));
+        if ($request->category_id != 0) {
+            // Add a category based query part 
+            $adverts->orderBy('created_at', 'desc')->whereHas('categories', function($query) use($request) {
+                $query->where('categories.id', $request->category_id);
+            });
+        }
+
+        // paginate() is a get() function
+        $adverts = $adverts->paginate(10);
+
+        return view('adverts.overview')->with(compact(['adverts', 'categories', 'request']));
     }
 
     /**
