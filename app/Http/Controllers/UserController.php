@@ -20,7 +20,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $adverts = Advert::orderBy('created_at', 'desc')->where('user_id', Auth::id())->get();
+        $adverts = Advert::query();
+
+        $adverts->orderBy('created_at', 'desc')->where('user_id', Auth::id());
+
+        // paginate() is a get() function
+        $adverts = $adverts->paginate(10);
 
         return view('user.overview', compact('adverts'));
     }

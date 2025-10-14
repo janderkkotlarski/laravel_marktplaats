@@ -26,7 +26,7 @@
 			<br>
 
 			<select id="category_id" name="category_id">
-				<option value="0"></option>
+				<option value="0">Niks</option>
 				@foreach($categories as $category)
 					<option value="{{ $category->id }}">{{ $category->name }}</option>
 				@endforeach
@@ -64,8 +64,6 @@
 	@endforeach
 
 	<x-middle_row>
-		<div>
 		{{ $adverts->links() }}
-</div>
 	</x-middle_row>
 @endsection
