@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	<br>
-	Jouw advertenties, {{ Auth::user()->name }}
-	<br><br>
+	Jouw advertenties, {{ Auth::user()->name }}:
 @endsection
 
 @section('content')

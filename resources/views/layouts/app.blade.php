@@ -13,8 +13,8 @@
 				color: #f0d0b0;
 				background-color: #206060;
 				padding: 10px;
-				border: 20px;
-				height: 30px;
+				border: 10px;
+				height: 10px;
 				margin: 7px;
 			}
 			td {
@@ -30,7 +30,7 @@
 			}
 			select {
 				background-color: #604020;
-				color: #80a0c0;
+				color: #c0a0c0;
 			}
 			a button {
 				color: #f0a0a0;
@@ -52,8 +52,8 @@
 			label {
 				font-weight: bold;
 			}
-			items-center {
-				color: #305f01ff;
+			h1 {
+				font-size: 2rem;				
 			}
 		</style>
 	</head>
@@ -61,7 +61,7 @@
 		<table>
 			<tbody>
 				<x-middle_row>@include('partials.nav')</x-middle_row>
-				<x-middle_row><h1>@yield('title')</h1></x-middle_row>
+				<x-middle_row><br><strong><h1>@yield('title')</h1></strong><br></x-middle_row>
 				<x-middle_row>@yield('content')</x-middle_row>
 			</tbody>
 		</table>

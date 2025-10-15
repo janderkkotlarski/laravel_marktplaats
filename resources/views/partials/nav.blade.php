@@ -11,7 +11,6 @@
 
 	<form action="/logout" method="POST">
 		@csrf
-		<br>
 		<x-button type="submit">Uitloggen</x-button>
 	</form>
 @endauth

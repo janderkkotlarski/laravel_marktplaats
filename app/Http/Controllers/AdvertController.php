@@ -30,6 +30,11 @@ class AdvertController extends Controller
             });
         }
 
+        if (isset($request->search_term)) {
+            $adverts->orderBy('created_at', 'desc')->where('title', 'LIKE', "%{$request->search_term}%")
+            ->orwhere('description', 'LIKE', "%{$request->search_term}%");            
+        }
+
         // paginate() is a get() function
         $adverts = $adverts->paginate(10);
 

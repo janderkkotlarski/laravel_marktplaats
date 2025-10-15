@@ -5,10 +5,28 @@
 @endsection
 
 @section('content')
+	<x-middle_row>
+		<form action="{{ route('adverts.list') }}" method="GET">
+			@csrf
+			<label for="search_term">
+				Zoek op trefwoord				
+			</label>
+
+			<br>
+			<input type="text" id="search_term" name="search_term">
+			<br>
+
+			<x-button type="submit">
+				Zoeken
+			</x-button>
+		</form>	
+		<br>
+	</x-middle_row>
+
 	<x-middle_row>		
 		<form action="{{ route('adverts.list') }}" method="GET">
 			@csrf
-			<label for="entry">
+			<label for="category_id">
 				@if($request->category_id != 0)
 					<b>
 				@endif
@@ -37,8 +55,7 @@
 				Toepassen
 			</x-button>
 		</form>	
-		<br>
-
+		<br><br>
 	</x-middle_row>	
 
 	<tr>
