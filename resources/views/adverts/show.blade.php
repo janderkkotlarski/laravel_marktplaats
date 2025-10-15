@@ -37,12 +37,32 @@
 				<input type="hidden" id="advert_id" name="advert_id" value="{{ $advert->id }}">
 				<input type="hidden" id="advert" name="advert" value="{{ $advert }}">
 				<input type="hidden" id="advert_user_id" name="advert_user_id" value="{{ $advert->user_id }}">
-
-				<x-errors/>
 				<br>
 
 				<x-button type="submit">Bevestig bod</x-button>
 			</form>
+			<br><br>
+		</x-middle_row>
+
+		<x-middle_row>
+			<form action="{{ route('messages.store') }}" method="POST">
+				@csrf
+
+				<label for="entry">Stuur bericht naar {{ $advert->user->name }}</label>
+				<br>
+				<input type="text" id="entry" name="entry" required>							
+
+				<input type="hidden" id="user_id" name="user_id" value="{{ $advert->user_id }}">
+				<input type="hidden" id="sender_id" name="sender_id" value="{{ Auth::user()->id }}">
+				<input type="hidden" id="advert_description" name="advert_description" value="{{ $advert->description }}">				
+				<br>
+
+				<x-button type="submit">Verstuur</x-button>
+			</form>
+		</x-middle_row>
+
+		<x-middle_row>
+			<x-errors/>
 		</x-middle_row>
     @endauth
 @endsection

@@ -9,6 +9,7 @@ use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BidController;
+use App\Http\Controllers\MessageController;
 
 Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.list');
 
@@ -24,6 +25,7 @@ Route::get('/adverts/{advert}/delete', [AdvertController::class, 'delete'])->mid
 Route::get('/adverts/{advert}/destroy', [AdvertController::class, 'destroy'])->middleware(['auth', 'verified'])->name('adverts.destroy');
 
 Route::post('/bids/store', [BidController::class, 'store'])->middleware(['auth', 'verified'])->name('bids.store');
+Route::post('/messages/store', [MessageController::class, 'store'])->middleware(['auth', 'verified'])->name('messages.store');
 
 Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
 
