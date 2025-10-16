@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->integer('sender_id');
-            $table->integer('reader_id');
             $table->string('entry');
             $table->timestamps();
         });

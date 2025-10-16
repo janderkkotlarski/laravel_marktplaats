@@ -33,10 +33,9 @@
 				<br>
 				<input type="number" id="price" name="price" min="0" max="10000" step="0.01" required>							
 
-				<input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
-				<input type="hidden" id="advert_id" name="advert_id" value="{{ $advert->id }}">
-				<input type="hidden" id="advert" name="advert" value="{{ $advert }}">
+				<input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">				
 				<input type="hidden" id="advert_user_id" name="advert_user_id" value="{{ $advert->user_id }}">
+				<input type="hidden" id="advert_id" name="advert_id" value="{{ $advert->id }}">
 				<br>
 
 				<x-button type="submit">Bevestig bod</x-button>
@@ -54,7 +53,7 @@
 
 				<input type="hidden" id="user_id" name="user_id" value="{{ $advert->user_id }}">
 				<input type="hidden" id="sender_id" name="sender_id" value="{{ Auth::user()->id }}">
-				<input type="hidden" id="advert_description" name="advert_description" value="{{ $advert->description }}">				
+				<input type="hidden" id="advert_id" name="advert_id" value="{{ $advert->id }}">
 				<br>
 
 				<x-button type="submit">Verstuur</x-button>

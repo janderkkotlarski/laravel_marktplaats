@@ -10,7 +10,6 @@ use App\Http\Controllers\AdvertController;
 
 use App\Models\Advert;
 use App\Models\Bid;
-use Symfony\Component\VarDumper\VarDumper;
 
 class BidController extends Controller
 {
