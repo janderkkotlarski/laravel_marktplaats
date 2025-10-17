@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\StoreBidRequest;
-
-use App\Http\Controllers\AdvertController;
 
 use App\Models\Advert;
 use App\Models\Bid;

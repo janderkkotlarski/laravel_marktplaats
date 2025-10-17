@@ -28,8 +28,10 @@ Route::post('/bids/store', [BidController::class, 'store'])->middleware(['auth',
 Route::post('/messages/store', [MessageController::class, 'store'])->middleware(['auth', 'verified'])->name('messages.store');
 
 Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
-
 Route::get('/user/overview', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('user.overview');
+
+Route::get('/messages/overview', [MessageController::class, 'index'])->middleware(['auth', 'verified'])->name('messages.list');
+Route::get('/messages/{message}/show', [MessageController::class, 'show'])->name('messages.page');
 
 Route::get('/user/register', [UserController::class, 'create'])->middleware('guest')->name('user.register');
 Route::post('/user/register', [UserController::class, 'store'])->middleware('guest')->name('user.store');
