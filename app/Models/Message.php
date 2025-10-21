@@ -12,6 +12,7 @@ class Message extends Model
     protected $fillable = [
         'user_id',
         'sender_id',
+        'advert_id',
         'entry',
     ];
 
@@ -21,5 +22,9 @@ class Message extends Model
 
     public function sender() {
         return $this->belongsTo(User::class);
+    }
+
+    public function advert() {
+        return $this->belongsTo(Advert::class);
     }
 }

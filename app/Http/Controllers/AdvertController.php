@@ -57,8 +57,7 @@ class AdvertController extends Controller
      */
     public function store(StoreAdvertRequest $request)
     {
-        $advert = Advert::create($request->validated());
-        
+        $advert = Advert::create($request->validated());        
         $advert->categories()->sync($request->category_id);
 
         return redirect()->route('user.overview');

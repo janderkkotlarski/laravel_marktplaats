@@ -31,6 +31,7 @@ Route::get('/user/login', [AuthenticationController::class, 'login'])->name('log
 Route::get('/user/overview', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('user.overview');
 
 Route::get('/messages/overview', [MessageController::class, 'index'])->middleware(['auth', 'verified'])->name('messages.list');
+Route::get('/messages/sent', [MessageController::class, 'libs'])->middleware(['auth', 'verified'])->name('messages.roster');
 Route::get('/messages/{message}/show', [MessageController::class, 'show'])->name('messages.page');
 
 Route::get('/user/register', [UserController::class, 'create'])->middleware('guest')->name('user.register');

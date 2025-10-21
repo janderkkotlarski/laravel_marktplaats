@@ -32,4 +32,8 @@ class Advert extends Model
     public function bids() {
         return $this->hasMany(Bid::class);
     }
+
+    public function messages() {
+        return $this->hasMany(Message::class);
+    }
 }

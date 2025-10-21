@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('sender_id');
+            $table->foreignId('advert_id');
             $table->string('entry');
             $table->timestamps();
         });

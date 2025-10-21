@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	Jouw ontvangen berichten, {{ Auth::user()->name }}:
+	Jouw verzonden berichten, {{ Auth::user()->name }}:
 @endsection
 
 @section('content')
@@ -14,8 +14,8 @@
 
 		@foreach($messages as $message)
 			<tr>
-				<td> {{ $message->sender->name }} </td>
-				<td> {{ $message->advert->title }} </td>
+				<td> {{ $message->user->name }} </td>
+                <td> {{ $message->advert->title }} </td>
 				<td> {{ $message->created_at }} </td>
 				<td>
 					<x-button type="button" a_link="{{ route('messages.page', $message) }}">Bekijk</x-button>
@@ -26,8 +26,7 @@
 
     @if(count($messages) == 0)
 		<x-middle_row>Nog geen berichten</x-middle_row>
-	@endif
-    
+	@endif  
 
 
 @endsection
