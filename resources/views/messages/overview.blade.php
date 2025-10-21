@@ -5,26 +5,27 @@
 @endsection
 
 @section('content')
-	<tr>		
-		<th>Gebruiker</th>
-		<th>Aanmaaktijd</th>
-		<th>Prijzenfestival!</th>
-	</tr>
-
-	@foreach($messages as $message)
-		<tr>
-			<td> {{ $message->user->name }} </td>
-			<td> {{ $message->created_at }} </td>
-			<td>
-                <x-button type="button" a_link="{{ route('messages.page', $message) }}">Bekijk</x-button>
-            </td>
+	@if(count($messages) > 0)
+		<tr>		
+			<th>Gebruiker</th>
+			<th>Aanmaaktijd</th>
+			<th>Prijzenfestival!</th>
 		</tr>
-	@endforeach
 
-    @foreach($sender_data as $sender_bit)
-        <x-middle_row>{{ $sender_bit[1] }}</x-middle_row>
-    @endforeach
+		@foreach($messages as $message)
+			<tr>
+				<td> {{ $message->sender->name }} </td>
+				<td> {{ $message->created_at }} </td>
+				<td>
+					<x-button type="button" a_link="{{ route('messages.page', $message) }}">Bekijk</x-button>
+				</td>
+			</tr>
+		@endforeach
+	@endif
 
+    @if(count($messages) == 0)
+		<x-middle_row>Nog geen berichten</x-middle_row>
+	@endif
     
 
 
