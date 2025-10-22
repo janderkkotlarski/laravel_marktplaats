@@ -54,7 +54,7 @@
 
 				<input type="hidden" id="user_id" name="user_id" value="{{ $advert->user_id }}">
 				<input type="hidden" id="sender_id" name="sender_id" value="{{ Auth::user()->id }}">
-				<input type="hidden" id="advert_id" name="advert_id" value="{{ $advert->id }}">
+				<input type="hidden" id="advert_title" name="advert_title" value="{{ $advert->title }}">
 				<br>
 
 				<x-button type="submit">Verstuur</x-button>

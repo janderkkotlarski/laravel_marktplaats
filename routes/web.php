@@ -9,9 +9,32 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\MessageController;
 
-Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.list');
+Route::redirect('/', 'adverts');
 
+Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.list');
 Route::get('/adverts/{advert}/show', [AdvertController::class, 'show'])->name('adverts.page');
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
+    Route::post('/login', [AuthenticationController::class, 'authenticate'])->name('authenticate');    
+
+    Route::get('/user/register', [UserController::class, 'create'])->name('user.register');
+    Route::post('/user/register', [UserController::class, 'store'])->name('user.store');
+
+    Route::get('/forgot-password', [AuthenticationController::class, 'forgot'])->name('password.request');
+    Route::post('/forgot-password', [AuthenticationController::class, 'mail'])->name('password.email');
+
+    Route::get('/reset-password/{token}', [AuthenticationController::class, 'reset'])->name('password.reset');
+    Route::post('/reset-password', [AuthenticationController::class, 'password'])->name('password.update');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/notify', [VerificationController::class, 'notify'])->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
+    Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->middleware('throttle:6,1')->name('verification.send');
+
+    Route::post('/logout', [AuthenticationController::class, 'logout']);
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/adverts/create', [AdvertController::class, 'create'])->name('adverts.create');
@@ -33,28 +56,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/user/overview', [UserController::class, 'index'])->name('user.overview');
 });
-
-
-
-
-
-Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
-
-
-Route::get('/user/register', [UserController::class, 'create'])->middleware('guest')->name('user.register');
-Route::post('/user/register', [UserController::class, 'store'])->middleware('guest')->name('user.store');
-
-Route::get('/user/notify', [VerificationController::class, 'notify'])->middleware('auth')->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
-Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
-Route::get('/forgot-password', [AuthenticationController::class, 'forgot'])->middleware('guest')->name('password.request');
-Route::post('/forgot-password', [AuthenticationController::class, 'mail'])->middleware('guest')->name('password.email');
-
-Route::get('/reset-password/{token}', [AuthenticationController::class, 'reset'])->middleware('guest')->name('password.reset');
-Route::post('/reset-password', [AuthenticationController::class, 'password'])->middleware('guest')->name('password.update');
-
-Route::post('/login', [AuthenticationController::class, 'authenticate'])->name('authenticate');
-Route::post('/logout', [AuthenticationController::class, 'logout']);
-
-Route::redirect('/', 'adverts');

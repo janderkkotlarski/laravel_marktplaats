@@ -36,6 +36,8 @@ class MessageController extends Controller
 
         $advert = Advert::where('id', $request->advert_id)->first();
 
+        // bring it back to the page where you came from
+
         return redirect()->route('adverts.page', $advert);
     }
 
