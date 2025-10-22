@@ -37,6 +37,7 @@ class StoreMessageRequest extends FormRequest
             'user_id.gte' => 'user_id moet minstens 1 zijn.',
             'sender_id.required' => 'Er is geen sender_id.',
             'sender_id.integer' => 'sender_id is geen geheel getal.',
+            'sender_id.gte' => 'user_id moet minstens 1 zijn.',
             'advert_id.required' => 'Er is geen user_id.',
             'advert_id.integer' => 'user_id is geen geheel getal.',
             'advert_id.gte' => 'user_id moet minstens 1 zijn.',

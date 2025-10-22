@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
@@ -15,24 +13,33 @@ Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.list')
 
 Route::get('/adverts/{advert}/show', [AdvertController::class, 'show'])->name('adverts.page');
 
-Route::get('/adverts/create', [AdvertController::class, 'create'])->middleware(['auth', 'verified'])->name('adverts.create');
-Route::post('/adverts/create', [AdvertController::class, 'store'])->middleware(['auth', 'verified'])->name('adverts.store');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/adverts/create', [AdvertController::class, 'create'])->name('adverts.create');
+    Route::post('/adverts/create', [AdvertController::class, 'store'])->name('adverts.store');
 
-Route::get('/adverts/{advert}/edit', [AdvertController::class, 'edit'])->middleware(['auth', 'verified'])->name('adverts.edit');
-Route::patch('/adverts/{advert}', [AdvertController::class, 'update'])->middleware(['auth', 'verified'])->name('adverts.update');
+    Route::get('/adverts/{advert}/edit', [AdvertController::class, 'edit'])->name('adverts.edit');
+    Route::patch('/adverts/{advert}', [AdvertController::class, 'update'])->name('adverts.update');
 
-Route::get('/adverts/{advert}/delete', [AdvertController::class, 'delete'])->middleware(['auth', 'verified'])->name('adverts.delete');
-Route::get('/adverts/{advert}/destroy', [AdvertController::class, 'destroy'])->middleware(['auth', 'verified'])->name('adverts.destroy');
+    Route::get('/adverts/{advert}/delete', [AdvertController::class, 'delete'])->name('adverts.delete');
+    Route::get('/adverts/{advert}/destroy', [AdvertController::class, 'destroy'])->name('adverts.destroy');
 
-Route::post('/bids/store', [BidController::class, 'store'])->middleware(['auth', 'verified'])->name('bids.store');
-Route::post('/messages/store', [MessageController::class, 'store'])->middleware(['auth', 'verified'])->name('messages.store');
+    Route::post('/bids/store', [BidController::class, 'store'])->name('bids.store');
+
+    Route::post('/messages/store', [MessageController::class, 'store'])->name('messages.store');
+    Route::get('/messages/{message}/show', [MessageController::class, 'show'])->name('messages.page');
+
+    Route::get('/messages/overview', [MessageController::class, 'index'])->name('messages.list');
+    Route::get('/messages/sent', [MessageController::class, 'libs'])->name('messages.roster');
+
+    Route::get('/user/overview', [UserController::class, 'index'])->name('user.overview');
+});
+
+
+
+
 
 Route::get('/user/login', [AuthenticationController::class, 'login'])->name('login');
-Route::get('/user/overview', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('user.overview');
 
-Route::get('/messages/overview', [MessageController::class, 'index'])->middleware(['auth', 'verified'])->name('messages.list');
-Route::get('/messages/sent', [MessageController::class, 'libs'])->middleware(['auth', 'verified'])->name('messages.roster');
-Route::get('/messages/{message}/show', [MessageController::class, 'show'])->name('messages.page');
 
 Route::get('/user/register', [UserController::class, 'create'])->middleware('guest')->name('user.register');
 Route::post('/user/register', [UserController::class, 'store'])->middleware('guest')->name('user.store');

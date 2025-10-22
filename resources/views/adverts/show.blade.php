@@ -23,8 +23,9 @@
 	@endforeach
 
 	<x-middle_row><br></x-middle_row>
-
+	
     @auth
+	@if($advert->user_id != Auth::user()->id)
 		<x-middle_row>
 			<form action="{{ route('bids.store') }}" method="POST">
 				@csrf
@@ -42,7 +43,7 @@
 			</form>
 			<br><br>
 		</x-middle_row>
-
+		
 		<x-middle_row>
 			<form action="{{ route('messages.store') }}" method="POST">
 				@csrf
@@ -63,5 +64,6 @@
 		<x-middle_row>
 			<x-errors/>
 		</x-middle_row>
+	@endif
     @endauth
 @endsection

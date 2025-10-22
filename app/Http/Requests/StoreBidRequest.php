@@ -23,7 +23,7 @@ class StoreBidRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|gte:1',
-            'advert_user_id' => 'different:user_id',
+            'advert_user_id' => 'required|integer|gte:1',
             'advert_id' => 'required|integer|gte:1',
             'price' => 'required|numeric:strict|min:0|max:10000|decimal:0,2',
         ];
@@ -35,7 +35,9 @@ class StoreBidRequest extends FormRequest
             'user_id.required' => 'Er is geen user_id.',
             'user_id.integer' => 'user_id is geen geheel getal.',
             'user_id.gte' => 'user_id moet minstens 1 zijn.',
-            'advert_user_id' => 'Op je eigen advertentie bieden hoort niet.',
+            'advert_user_id.required' => 'Er is geen advert_id.',
+            'advert_user_id.integer' => 'advert_id is geen geheel getal.',
+            'advert_user_id.gte' => 'advert_id moet minstens 1 zijn.',
             'advert_id.required' => 'Er is geen advert_id.',
             'advert_id.integer' => 'advert_id is geen geheel getal.',
             'advert_id.gte' => 'advert_id moet minstens 1 zijn.',
