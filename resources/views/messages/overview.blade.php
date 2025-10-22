@@ -15,7 +15,7 @@
 		@foreach($messages as $message)
 			<tr>
 				<td> {{ $message->sender->name }} </td>
-				<td> {{ $message->advert->title }} </td>
+				<td> {{ $message->advert_title }} </td>
 				<td> {{ $message->created_at }} </td>
 				<td>
 					<x-button type="button" a_link="{{ route('messages.page', $message) }}">Bekijk</x-button>

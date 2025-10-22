@@ -12,6 +12,7 @@ class Message extends Model
     protected $fillable = [
         'user_id',
         'sender_id',
+        'advert_id',
         'advert_title',
         'entry',
     ];
