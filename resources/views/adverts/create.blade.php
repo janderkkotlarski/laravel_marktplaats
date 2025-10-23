@@ -19,7 +19,7 @@
 
         <label for="price">Prijs</label>
 		<br>
-		<input type="number" id="price" name="price" min="0" max="10000" step="0.01" required>
+		€<input type="number" id="price" name="price" min="0" max="10000" step="0.01" required>
 		<br><br>
 
 		<label for="category_id">Categoriën</label>

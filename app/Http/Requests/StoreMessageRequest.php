@@ -24,7 +24,6 @@ class StoreMessageRequest extends FormRequest
         return [
             'user_id' => 'required|integer|gte:1',
             'sender_id' => 'required|integer|gte:1',
-            'advert_id' => 'required|integer|gte:1',
             'advert_title' => 'required|string|max:255',
             'entry' => 'required|string',
         ];
@@ -39,11 +38,8 @@ class StoreMessageRequest extends FormRequest
             'sender_id.required' => 'Er is geen sender_id.',
             'sender_id.integer' => 'sender_id is geen geheel getal.',
             'sender_id.gte' => 'user_id moet minstens 1 zijn.',
-            'advert_id.required' => 'Er is geen sender_id.',
-            'advert_id.integer' => 'sender_id is geen geheel getal.',
-            'advert_id.gte' => 'user_id moet minstens 1 zijn.',
-            'title.required' => 'Waar is de titel?',
-            'title.max' => 'Titel is langer dan 255 tekens',
+            'advert_title.required' => 'Waar is de titel?',
+            'advert_title.max' => 'Titel is langer dan 255 tekens',
             'entry.required' => 'Waar is het bericht?',
         ];
     }

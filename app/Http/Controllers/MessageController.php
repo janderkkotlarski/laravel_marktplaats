@@ -32,13 +32,9 @@ class MessageController extends Controller
 
     public function store(StoreMessageRequest $request)
     {
-        Message::create($request->validated());     
-
-        $advert = Advert::where('id', $request->advert_id)->first();
-
-        // bring it back to the page where you came from
-
-        return redirect()->route('adverts.page', $advert);
+        Message::create($request->validated());
+        
+        return redirect()->route('messages.list');
     }
 
     public function show(Message $message)

@@ -13,9 +13,9 @@
 
 	@foreach($adverts as $advert)
 		<tr>
-			<td> {{ $advert->title }} </td>
-			<td> {{ $advert->description }} </td>
-			<td> {{ $advert->price }} </td>
+			<td>{{ $advert->title }}</td>
+			<td>{{ $advert->description }}</td>
+			<td>€ {{ $advert->price }}</td>
 			<td>
 				<x-button type="button" a_link="{{ route('adverts.edit', $advert) }}">
 					Bewerken

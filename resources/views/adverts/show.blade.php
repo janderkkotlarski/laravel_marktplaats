@@ -10,7 +10,7 @@
     <x-middle_row>{{ $advert->description }}<br><br></x-middle_row>
 
     <x-middle_row><b>Prijs</b></x-middle_row>
-    <x-middle_row>{{ $advert->price }}<br><br></x-middle_row>
+    <x-middle_row>€ {{ $advert->price }}<br><br></x-middle_row>
 
     <x-middle_row><b>Geplaatst door</b></x-middle_row>
     <x-middle_row>{{ $advert->user->name }}<br><br></x-middle_row>
@@ -32,7 +32,7 @@
 
 				<label for="price">Bedrag om te bieden</label>
 				<br>
-				<input type="number" id="price" name="price" min="0" max="10000" step="0.01" required>							
+				€<input type="number" id="price" name="price" min="0" max="10000" step="0.01" required>							
 
 				<input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">				
 				<input type="hidden" id="advert_user_id" name="advert_user_id" value="{{ $advert->user_id }}">
@@ -54,7 +54,6 @@
 
 				<input type="hidden" id="user_id" name="user_id" value="{{ $advert->user_id }}">
 				<input type="hidden" id="sender_id" name="sender_id" value="{{ Auth::user()->id }}">
-				<input type="hidden" id="advert_id" name="advert_id" value="{{ $advert->id }}">
 				<input type="hidden" id="advert_title" name="advert_title" value="{{ $advert->title }}">
 				<br>
 

@@ -70,7 +70,7 @@
 		<tr>
 			<td>{{ $advert->title }}</td>
 			<td>{{ $advert->description }}</td>
-			<td>{{ $advert->price }}</td>			
+			<td>€ {{ $advert->price }}</td>			
 			<td>{{ $advert->user->name }}</td>
 			<td>{{ $advert->created_at }}</td>
 			<td>
