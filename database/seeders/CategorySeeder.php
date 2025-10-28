@@ -16,8 +16,8 @@ class CategorySeeder extends Seeder
     {
         Category::factory()->create([
             'name' => 'Electronica',
-        ])->each(Advert::orderBy('created_at', 'desc')->get());
-
+        ]);
+        
         Category::factory()->create([
             'name' => 'Meubels',
         ]);
@@ -25,5 +25,15 @@ class CategorySeeder extends Seeder
         Category::factory()->create([
             'name' => 'Fietsen',
         ]);
+
+        Category::factory()->create([
+            'name' => 'Hobby',
+        ]);
+
+        $catCount = Category::count();
+
+        Advert::all()->each(function ($advert) use ($catCount) {
+            $advert->categories()->attach(Category::all()->random(rand(0, $catCount))->pluck('id')->toArray());
+        });
     }
 }

@@ -33,18 +33,23 @@
 				
 				Categoriefilter
 
-				@if($request->category_id != 0)					
+				@if($request->category_id > 0)					
 					@foreach($categories as $category)
 						@if($category->id == $request->category_id)
-							-> {{ $category->name }}</b>
+							-> [{{ $category->name }}]</b>
 						@endif
-					@endforeach
+					@endforeach					
+				@endif
+
+				@if($request->category_id == -1)
+					-> []</b>
 				@endif
 			</label>
 			<br>
 
 			<select id="category_id" name="category_id">
-				<option value="0">Niks</option>
+				<option value="0">Geen</option>
+				<option value="-1">Niks</option>				
 				@foreach($categories as $category)
 					<option value="{{ $category->id }}">{{ $category->name }}</option>
 				@endforeach

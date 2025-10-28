@@ -24,10 +24,15 @@ class AdvertController extends Controller
         $categories = Category::orderBy('id', 'asc')->get();
 
         if ($request->category_id != 0) {
-            // Add a category based query part 
-            $adverts->orderBy('created_at', 'desc')->whereHas('categories', function($query) use($request) {
-                $query->where('categories.id', $request->category_id);
-            });
+            if ($request->category_id > 0) {
+                // Add a category based query part 
+                $adverts->orderBy('created_at', 'desc')->whereHas('categories', function($query) use($request) {
+                    $query->where('categories.id', $request->category_id);
+                });
+            } else {
+                // Selection of adverts without categories
+                $adverts->doesntHave('categories');
+            }
         }
 
         if (isset($request->search_term)) {
