@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             AdvertSeeder::class,
             CategorySeeder::class,            
             BidSeeder::class,
+            MessageSeeder::class,
         ]);
     }
 }

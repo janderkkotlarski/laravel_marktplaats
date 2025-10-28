@@ -17,12 +17,32 @@ class MessageFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    public function other_sender($user_id) {
+    
+        $sender_id = $user_id;
+
+        $amount = User::all()->count();
+
+        while ($sender_id == $user_id &&
+               $amount != 1) {
+            $sender_id = User::inRandomOrder()->first()->id;
+        }
+
+        return $sender_id;
+    }
+
     public function definition(): array
     {
+        $user_id = User::inRandomOrder()->first()->id;
+
+        $sender_id = MessageFactory::other_sender($user_id);
+
+        $advert_title = Advert::inRandomOrder()->where('user_id', $user_id)->first()->title;
+
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
-            'sender_id' => User::inRandomOrder()->first()->id,
-            'advert_title' => Advert::inRandomOrder()->first()->title,
+            'user_id' => $user_id,
+            'sender_id' => $sender_id,
+            'advert_title' => $advert_title,
             'entry' => $this->faker->sentence,
         ];
     }
