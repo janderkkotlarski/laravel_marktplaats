@@ -33,6 +33,10 @@ class MessageController extends Controller
     public function store(StoreMessageRequest $request)
     {
         Message::create($request->validated());
+
+        $user = Message::where('id', Message::count())->first()->user;
+
+        // dd($user->name);
         
         return redirect()->route('messages.list');
     }

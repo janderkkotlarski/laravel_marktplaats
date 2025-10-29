@@ -9,6 +9,8 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\MessageController;
 
+use App\Order;
+
 Route::redirect('/', 'adverts');
 
 Route::get('/adverts', [AdvertController::class, 'index'])->name('adverts.list');

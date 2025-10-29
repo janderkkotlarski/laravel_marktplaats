@@ -20,6 +20,15 @@ class UserController extends Controller
      */
     public function index()
     {
+        if(isset($_GET['notify'])) {
+            $user = Auth::user();
+
+            // Making notifications toggleable
+            $user->notify = !$user->notify;
+
+            $user->save();
+        }
+
         $adverts = Advert::query();
 
         $adverts->orderBy('created_at', 'desc')->where('user_id', Auth::id());
