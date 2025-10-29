@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+    @if($message->sender_id == Auth::user()->id)
+        <x-middle_row><b>Gestuurd naar</b></x-middle_row>
+        <x-middle_row>{{ $message->user->name }}<br><br></x-middle_row>
+    @endif
+
 	<x-middle_row><b>Advertentie</b></x-middle_row>
     <x-middle_row>{{ $message->advert_title }}<br><br></x-middle_row>
 

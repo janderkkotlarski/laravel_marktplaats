@@ -10,6 +10,11 @@ use App\Models\User;
 
 class MessageSeeder extends Seeder
 {
+    public function latestMessage()
+    {
+        return Message::where('id',  Message::count())->first();
+    }
+
     public function response(Message $message, int $depth)
     {
         Message::factory()->create([
@@ -21,7 +26,7 @@ class MessageSeeder extends Seeder
 
         if ($depth > 1)
         {
-            MessageSeeder::response($message, $depth - 1);
+            MessageSeeder::response(MessageSeeder::latestMessage(), $depth - 1);
         }
     }
 
@@ -31,9 +36,15 @@ class MessageSeeder extends Seeder
     public function run(): void
     {
         if (User::count() > 1) {
-            Message::factory()->count(100)->create();
-        }
+            $loop = 10;
+            $iter = 0;
 
-        MessageSeeder::response(Message::where('id', 1)->first(), 3);
+            while ($iter < $loop) {
+                Message::factory()->create();
+
+                MessageSeeder::response(MessageSeeder::latestMessage(), 3);
+                ++$iter;
+            }
+        }        
     }
 }
