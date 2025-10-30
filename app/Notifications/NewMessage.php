@@ -14,7 +14,10 @@ class NewMessage extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(
+        public readonly string $user_name,
+        public readonly string $sender_name
+    )
     {
         //
     }
@@ -32,12 +35,11 @@ class NewMessage extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(mixed $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('Nieuw bericht')
+            ->line("{$this->user_name}, je hebt een nieuw bericht van {$this->sender_name} ontvangen.");
     }
 
     /**

@@ -10,6 +10,11 @@ use App\Models\Message;
 use App\Models\Advert;
 use App\Models\User;
 
+use Illuminate\Support\Facades\Notification;
+// use Illuminate\Notifications\Notification;
+
+use App\Notifications\NewMessage;
+
 class MessageController extends Controller
 {
     public function index() 
@@ -35,6 +40,12 @@ class MessageController extends Controller
         Message::create($request->validated());
 
         $user = Message::where('id', Message::count())->first()->user;
+
+        Notification::route('mail', $user->email)
+        ->notify(new NewMessage(
+            $user->name,
+            Auth::user()->name
+        ));
 
         // dd($user->name);
         
