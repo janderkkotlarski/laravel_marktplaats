@@ -37,17 +37,16 @@ class MessageController extends Controller
 
     public function store(StoreMessageRequest $request)
     {
-        Message::create($request->validated());
+        $message = Message::create($request->validated());
 
-        $user = Message::where('id', Message::count())->first()->user;
-
-        Notification::route('mail', $user->email)
-        ->notify(new NewMessage(
-            $user->name,
-            Auth::user()->name
-        ));
-
-        // dd($user->name);
+        if ($message->user->notify) {
+            Notification::route('mail', $message->user->email)
+            ->notify(new NewMessage(
+                $message->user->name,
+                Auth::user()->name,
+                $message->advert_title
+            ));
+        }
         
         return redirect()->route('messages.list');
     }

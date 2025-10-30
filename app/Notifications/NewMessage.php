@@ -16,7 +16,8 @@ class NewMessage extends Notification
      */
     public function __construct(
         public readonly string $user_name,
-        public readonly string $sender_name
+        public readonly string $sender_name,
+        public readonly string $advert_title
     )
     {
         //
@@ -39,7 +40,7 @@ class NewMessage extends Notification
     {
         return (new MailMessage)
             ->subject('Nieuw bericht')
-            ->line("{$this->user_name}, je hebt een nieuw bericht van {$this->sender_name} ontvangen.");
+            ->line("{$this->user_name}, je hebt een nieuw bericht van {$this->sender_name} betreffende advertentie '{$this->advert_title}' ontvangen.");
     }
 
     /**
