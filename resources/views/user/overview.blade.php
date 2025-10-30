@@ -22,6 +22,11 @@
 				</x-button>
 			</td>
 			<td>
+				<x-button type="button" a_link="{{ route('adverts.promote', $advert) }}">
+					Promoveren
+				</x-button>
+			</td>
+			<td>
 				<x-button type="button" a_link="{{ route('adverts.delete', $advert) }}">
 					Verwijderen
 				</x-button>

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('notify');
-            $table->boolean('premium');
             $table->rememberToken();
             $table->timestamps();
         });

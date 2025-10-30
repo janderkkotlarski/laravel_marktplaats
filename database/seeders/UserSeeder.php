@@ -17,21 +17,18 @@ class UserSeeder extends Seeder
             'name' => 'John',
             'email' => 'johnnyboi@dud.com',
             'password' => 'Doedoedoe',
-            'premium' => '0',
         ]);
 
         User::factory()->create([
             'name' => 'Mary',
             'email' => 'maryanne@blud.com',
             'password' => 'Cleanslate',
-            'premium' => '0',
         ]);
 
         User::factory()->create([
             'name' => 'Bulktron',
             'email' => 'bulk@tron.com',
             'password' => 'Eatmorebloats',
-            'premium' => '1',
         ]);
     }
 }

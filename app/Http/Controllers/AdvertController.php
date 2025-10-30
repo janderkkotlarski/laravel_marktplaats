@@ -19,7 +19,7 @@ class AdvertController extends Controller
     public function index(Request $request) {
         $adverts = Advert::query();
 
-        $adverts->orderBy('created_at', 'desc');
+        $adverts->orderBy('premium', 'desc')->orderBy('created_at', 'desc');
 
         $categories = Category::orderBy('id', 'asc')->get();
 
@@ -105,6 +105,16 @@ class AdvertController extends Controller
         $advert->categories()->sync($request->category_id);
 
         return redirect()->route('user.overview');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function promote(Advert $advert)
+    {
+        $user = Auth::user();
+
+        return view('adverts.promote')->with(compact(['user', 'advert']));
     }
 
     public function delete(Advert $advert)

@@ -14,7 +14,8 @@ class Advert extends Model
         'title',
         'description',
         'price',
-        'premium',
+        'promoted',
+        'promoted_at'
     ];
 
     protected $with = [
@@ -24,6 +25,7 @@ class Advert extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
 
     public function categories() {
         return $this->belongsToMany(Category::class);
