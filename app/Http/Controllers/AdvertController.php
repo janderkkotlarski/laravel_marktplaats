@@ -62,6 +62,8 @@ class AdvertController extends Controller
      */
     public function store(StoreAdvertRequest $request)
     {
+        $request->merge(['promoted' => 0, 'promoted_at' => now()]);
+
         $advert = Advert::create($request->validated());        
         $advert->categories()->sync($request->category_id);
 
@@ -98,9 +100,6 @@ class AdvertController extends Controller
         $advert->title = $updated->title;
         $advert->description = $updated->description;
         $advert->price = $updated->price;
-        $advert->promoted = $updated->promoted;
-        $advert->promoted_at = $updated->promoted_at;
-
         $advert->save();
 
         $advert->categories()->sync($request->category_id);

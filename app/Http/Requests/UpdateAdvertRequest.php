@@ -25,7 +25,6 @@ class UpdateAdvertRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric:strict|min:0|max:10000|decimal:0,2',
-            'promoted' => 'required|integer|min:0|max:1',
         ];
     }
 
@@ -40,9 +39,6 @@ class UpdateAdvertRequest extends FormRequest
             'price.min' => 'De prijs moet minstens 0 zijn.',
             'price.max' => 'De prijs mag maximaal 10000 zijn.',
             'price.decimal' => 'De prijs mag niet meer dan 2 cijfers achter de punt hebben.',
-            'promoted.required' => 'Een promotie aanduiding is noodzakelijk.',
-            'promoted.min' => 'Promotie mag minimaal 0 zijn.',
-            'promoted.max' => 'Promotie mag maximaal 1 zijn.',
         ];
     }
 }
