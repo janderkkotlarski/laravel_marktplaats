@@ -43,10 +43,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/adverts/create', [AdvertController::class, 'store'])->name('adverts.store');
 
     Route::get('/adverts/{advert}/edit', [AdvertController::class, 'edit'])->name('adverts.edit');
-    Route::patch('/adverts/{advert}', [AdvertController::class, 'update'])->name('adverts.update');
+    Route::patch('/adverts/{advert}/update', [AdvertController::class, 'update'])->name('adverts.update');
     
     Route::get('/adverts/{advert}/promote', [AdvertController::class, 'promote'])->name('adverts.promote');
-    Route::patch('/adverts/{advert}', [AdvertController::class, 'promoted'])->name('adverts.promotion');
+    Route::patch('/adverts/{advert}/promoted', [AdvertController::class, 'promoted'])->name('adverts.promotion');
 
     Route::get('/adverts/{advert}/delete', [AdvertController::class, 'delete'])->name('adverts.delete');
     Route::get('/adverts/{advert}/destroy', [AdvertController::class, 'destroy'])->name('adverts.destroy');
