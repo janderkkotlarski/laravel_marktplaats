@@ -32,7 +32,7 @@
 		</select>
 		<br>
 
-		<input type="hidden" id="premium" name="premium" value="{{ $advert->premium }}">
+		<input type="hidden" id="promoted" name="promoted" value="{{ $advert->promoted }}">
 
 		@error('title')
 			{{ $message }}

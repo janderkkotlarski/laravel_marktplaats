@@ -19,7 +19,7 @@ class AdvertController extends Controller
     public function index(Request $request) {
         $adverts = Advert::query();
 
-        $adverts->orderBy('premium', 'desc')->orderBy('created_at', 'desc');
+        $adverts->orderBy('promoted', 'desc')->orderBy('promoted_at', 'desc')->orderBy('created_at', 'desc');
 
         $categories = Category::orderBy('id', 'asc')->get();
 
@@ -98,7 +98,8 @@ class AdvertController extends Controller
         $advert->title = $updated->title;
         $advert->description = $updated->description;
         $advert->price = $updated->price;
-        $advert->premium = $updated->premium;
+        $advert->promoted = $updated->promoted;
+        $advert->promoted_at = $updated->promoted_at;
 
         $advert->save();
 
@@ -115,6 +116,19 @@ class AdvertController extends Controller
         $user = Auth::user();
 
         return view('adverts.promote')->with(compact(['user', 'advert']));
+    }
+
+     public function promoted(Advert $advert)
+    {
+        // $user = Auth::user();
+
+        $advert->promoted = 1;
+
+        $advert->promoted_at = now();
+
+        $advert->save();
+
+        return redirect()->route('user.overview');
     }
 
     public function delete(Advert $advert)

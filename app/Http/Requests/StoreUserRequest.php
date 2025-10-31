@@ -25,7 +25,6 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|max:64',
-            'premium' => 'required|integer|min:0|max:1',
         ];
     }
 
@@ -41,9 +40,6 @@ class StoreUserRequest extends FormRequest
             'password.required' => 'Waar is het wachtwoord?',
             'password.min' => 'Wachtwoord is korter dan 8 tekens.',
             'password.max' => 'Wachtwoord is langer dan 64 tekens.',
-            'premium.required' => 'Een premium aanduiding is noodzakelijk.',
-            'premium.min' => 'Premium mag minimaal 0 zijn.',
-            'premium.max' => 'Premium mag maximaal 1 zijn.',
         ];
     }
 }
