@@ -23,8 +23,6 @@ class AdvertFactory extends Factory
             'title' => $this->faker->word,
             'description' => $this->faker->sentence,
             'price' => $this->faker->randomFloat(2, 1, 100),
-            'promoted' => $this->faker->numberBetween(0, 1),
-            'promoted_at' => now(),
         ];
     }
 }

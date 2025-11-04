@@ -31,9 +31,6 @@
 		</select>
 		<br>
 
-		<input type="hidden" id="promoted" name="promoted" value=0>
-		
-
 		<input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
 
 		<x-errors/>

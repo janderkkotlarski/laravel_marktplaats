@@ -14,7 +14,6 @@ class Advert extends Model
         'title',
         'description',
         'price',
-        'promoted',
         'promoted_at'
     ];
 

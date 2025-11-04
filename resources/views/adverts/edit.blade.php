@@ -32,8 +32,6 @@
 		</select>
 		<br>
 
-		<input type="hidden" id="promoted" name="promoted" value="{{ $advert->promoted }}">
-
 		@error('title')
 			{{ $message }}
 			<br>

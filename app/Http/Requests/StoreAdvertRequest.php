@@ -26,7 +26,6 @@ class StoreAdvertRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric:strict|min:0|max:10000|decimal:0,2',
-            'promoted' => 'required|size:0',
             'promoted_at' => 'required|date',
         ];
     }
@@ -45,9 +44,7 @@ class StoreAdvertRequest extends FormRequest
             'price.min' => 'De prijs moet minstens 0 zijn.',
             'price.max' => 'De prijs mag maximaal 10000 zijn.',
             'price.decimal' => 'De prijs mag niet meer dan 2 cijfers achter de punt hebben.',
-            'promoted.required' => 'De webdesigner heeft het promotieveldje vergeten erin te doen.',
-            'promoted.size' => 'De webdesigner heeft het promotieveldje niet standaard op geen gezet.',
-            'promoted_at.required' => 'De webdesigner heeft de de promotiedatum er niet automatisch i'
+            'promoted_at.required' => 'De webdesigner heeft de promotiedatum er niet automatisch in gedaan.',
         ];
     }
 }

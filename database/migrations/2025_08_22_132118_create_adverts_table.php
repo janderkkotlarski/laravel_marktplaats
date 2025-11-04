@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->float('price', 2);
-            $table->boolean('promoted');
-            $table->datetime('promoted_at');
+            $table->datetime('promoted_at')->nullable();
             $table->timestamps();
         });
     }
