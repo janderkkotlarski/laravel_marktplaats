@@ -25,8 +25,7 @@ class StoreAdvertRequest extends FormRequest
             'user_id' => 'required|integer|gte:1',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric:strict|min:0|max:10000|decimal:0,2',
-            'promoted_at' => 'required|date',
+            'price' => 'required|numeric:strict|min:0|max:10000|decimal:0,2'
         ];
     }
 
@@ -43,8 +42,7 @@ class StoreAdvertRequest extends FormRequest
             'price.numeric' => 'De prijs is geen getal.',
             'price.min' => 'De prijs moet minstens 0 zijn.',
             'price.max' => 'De prijs mag maximaal 10000 zijn.',
-            'price.decimal' => 'De prijs mag niet meer dan 2 cijfers achter de punt hebben.',
-            'promoted_at.required' => 'De webdesigner heeft de promotiedatum er niet automatisch in gedaan.',
+            'price.decimal' => 'De prijs mag niet meer dan 2 cijfers achter de punt hebben.'
         ];
     }
 }

@@ -19,7 +19,7 @@ class AdvertController extends Controller
     public function index(Request $request) {
         $adverts = Advert::query();
 
-        $adverts->orderBy('promoted', 'desc')->orderBy('promoted_at', 'desc')->orderBy('created_at', 'desc');
+        $adverts->orderBy('promoted_at', 'desc')->orderBy('created_at', 'desc');
 
         $categories = Category::orderBy('id', 'asc')->get();
 
@@ -62,8 +62,6 @@ class AdvertController extends Controller
      */
     public function store(StoreAdvertRequest $request)
     {
-        $request->merge(['promoted' => 0, 'promoted_at' => now()]);
-
         $advert = Advert::create($request->validated());        
         $advert->categories()->sync($request->category_id);
 
@@ -119,10 +117,6 @@ class AdvertController extends Controller
 
      public function promoted(Advert $advert)
     {
-        // $user = Auth::user();
-
-        $advert->promoted = 1;
-
         $advert->promoted_at = now();
 
         $advert->save();

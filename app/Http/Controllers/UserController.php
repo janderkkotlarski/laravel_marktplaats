@@ -31,7 +31,7 @@ class UserController extends Controller
 
         $adverts = Advert::query();
 
-        $adverts->orderBy('created_at', 'desc')->where('user_id', Auth::id());
+        $adverts->orderBy('promoted_at', 'desc')->orderBy('created_at', 'desc')->where('user_id', Auth::id());
 
         // paginate() is a get() function
         $adverts = $adverts->paginate(10);

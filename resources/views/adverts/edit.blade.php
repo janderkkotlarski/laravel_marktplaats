@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('title')
-	Bewerk advertentie {{ $advert->title }}
+	Bewerk advertentie<br>
+	<b>{{ $advert->title }}</b>
 @endsection
 
 @section('content')

@@ -9,6 +9,7 @@
 		<th>Titel</th>
 		<th>Beschrijving</th>
 		<th>Prijs</th>
+		<th>Promotie</th>
 	</tr>
 
 	@foreach($adverts as $advert)
@@ -17,15 +18,22 @@
 			<td>{{ $advert->description }}</td>
 			<td>€ {{ $advert->price }}</td>
 			<td>
-				<x-button type="button" a_link="{{ route('adverts.edit', $advert) }}">
-					Bewerken
-				</x-button>
-			</td>
-			<td>
+				@if(isset($advert->promoted_at))
+					Ja
+				@else
+					Nee	
+				@endif
 				<x-button type="button" a_link="{{ route('adverts.promote', $advert) }}">
 					Promoveren
 				</x-button>
 			</td>
+
+			<td>
+				<x-button type="button" a_link="{{ route('adverts.edit', $advert) }}">
+					Bewerken
+				</x-button>
+			</td>
+			
 			<td>
 				<x-button type="button" a_link="{{ route('adverts.delete', $advert) }}">
 					Verwijderen

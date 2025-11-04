@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('title')
-	Promoveer advertentie {{ $advert->title }}
+	Promoveer advertentie<br>
+	<b>{{ $advert->title }}</b><br>
+	naar het eerste resultaat
 @endsection
 
 @section('content')
@@ -14,8 +16,7 @@
 			{{ $message }}
 			<br>
 		@enderror
-		<br>
 
-		<x-button type="submit">Betaal 10 euro</x-button>
+		<x-button type="submit">Betaal 10 euro voor promotie</x-button>
 	</form>
 @endsection

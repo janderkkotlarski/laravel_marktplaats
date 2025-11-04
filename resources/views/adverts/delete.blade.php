@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('title')
-	Verwijder {{ $advert->title }}
+	Verwijder advertentie<br>
+	<b>{{ $advert->title }}</b>
 @endsection
 
 @section('content')
