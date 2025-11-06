@@ -25,6 +25,7 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|max:64',
+            'notify' => 'required|integer|numeric:strict|size:0'
         ];
     }
 
@@ -40,6 +41,9 @@ class StoreUserRequest extends FormRequest
             'password.required' => 'Waar is het wachtwoord?',
             'password.min' => 'Wachtwoord is korter dan 8 tekens.',
             'password.max' => 'Wachtwoord is langer dan 64 tekens.',
+            'notify.required' => 'De beheerder heeft de notificatiemogelijkheid vergeten.',
+            'notify.numeric' => 'De beheerder heeft natify geen getal gemaakt.',
+            'notify.size' => 'De beheerder heeft het niet 0 gemaakt voor de juiste werking.',
         ];
     }
 }

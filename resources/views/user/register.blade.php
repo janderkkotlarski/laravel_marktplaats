@@ -31,6 +31,8 @@
             <br>
             <input type="password" id="password" name="password" required>
             <br><br>
+
+            <input type="hidden" id="notify" name="notify" value="0">
             
             <x-button type="submit">Registreren</x-button>
 
