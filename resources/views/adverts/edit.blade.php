@@ -24,7 +24,10 @@
 		€<input type="number" id="price" name="price" min="0" max="10000" step="0.01" value="{{ $advert->price }}" required>
 		<br><br>
 
-		<label for="category_id">Categoriën</label>
+		<label for="category_id">Categoriën:</label>
+		@foreach($advert->categories as $advert_category)
+			{{ $advert_category->name }}
+		@endforeach
 		<br>
 		<select id="category_id" name="category_id[]" multiple>
 			@foreach($categories as $category)

@@ -26,7 +26,7 @@
 
                 <label for="entry">Stuur bericht naar {{ $message->sender->name }}</label>
                 <br>
-                <input type="text" id="entry" name="entry" required>							
+                <input type="text" id="entry" name="entry" value="[{{ $message->entry }}]" required>							
 
                 <input type="hidden" id="user_id" name="user_id" value="{{ $message->sender_id }}">
                 <input type="hidden" id="sender_id" name="sender_id" value="{{ Auth::user()->id }}">
