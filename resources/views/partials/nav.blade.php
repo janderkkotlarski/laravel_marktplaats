@@ -9,7 +9,6 @@
 @auth
     <x-button type="button" a_link="{{ route('user.overview') }}">Jouw advertenties</x-button>
 	<x-button type="button" a_link="{{ route('messages.list') }}">Jouw ontvangen berichten</x-button>
-	<x-button type="button" a_link="{{ route('messages.roster') }}">Jouw verzonden berichten</x-button>
 
 	<form action="/logout" method="POST">
 		@csrf

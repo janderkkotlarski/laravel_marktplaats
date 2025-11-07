@@ -21,7 +21,7 @@ class MessageSeeder extends Seeder
             'user_id' => $message->sender_id,
             'sender_id' => $message->user_id,
             'advert_title' => $message->advert_title,
-            'entry' => 'response depth: ' . $depth,
+            'entry' => '[' . $message->entry . '] - ' . 'response depth: ' . $depth,
         ]);
 
         if ($depth > 1)
