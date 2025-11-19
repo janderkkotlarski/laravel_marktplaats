@@ -14,9 +14,9 @@ class BidController extends Controller
         // No need to make superfluous variables
         Bid::create($request->validated());
 
-        // TODO: overweeg de find() method ipv where + first
-        $advert = Advert::where('id', $request->advert_id)->first();
-
+        // find(x) is easier and more direct than where('x', x)->first()
+        $advert = Advert::find($request->advert_id);
+        
         return redirect()->route('adverts.page', $advert);
     }
 }
